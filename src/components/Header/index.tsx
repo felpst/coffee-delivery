@@ -12,7 +12,7 @@ import logo from '../../assets/logo.svg'
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <a href="/"><img src={logo} alt="" /></a>
       <nav>
         <LocationContainer href="">
           <MapPin size={22} weight="fill" color="#8047f8" />

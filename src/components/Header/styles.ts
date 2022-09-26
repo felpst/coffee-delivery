@@ -7,6 +7,12 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   padding: 2rem 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background: ${(props) => props.theme.background};
 
   nav {
     display: flex;
@@ -53,9 +59,9 @@ export const Badge = styled.span`
 
   font-weight: 700;
   font-size: 0.75rem;
-  line-height: 130%;
+  line-height: 100%;
 
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.5rem;
 
   transition: all 0.2s ease;
 

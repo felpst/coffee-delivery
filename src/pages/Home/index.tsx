@@ -1,11 +1,7 @@
 import coffeeBanner from '../../assets/coffeeBanner.svg'
-import coffee from '../../assets/coffee.svg'
 import {
-  BuyDashboardContainer,
   CoffeeListContainer,
-  CoffeeListItem,
   CoffeeListItemsContainer,
-  CounterButton,
   HomeContainer,
   IconBrown,
   IconGray,
@@ -15,19 +11,16 @@ import {
   IntroItemContainer,
   IntroText,
   Item,
-  Price,
-  Tag,
 } from './styles'
 
 import {
   Coffee,
-  Minus,
   Package,
-  Plus,
   ShoppingCart,
-  ShoppingCartSimple,
   Timer,
 } from 'phosphor-react'
+
+import { ListItem } from '../../components/ListItem'
 
 export function Home() {
   return (
@@ -71,32 +64,17 @@ export function Home() {
       <CoffeeListContainer>
         <h1>Nossos cafés</h1>
         <CoffeeListItemsContainer>
-          <CoffeeListItem>
-            <img src={coffee} alt="" />
-            <Tag>Tradicional</Tag>
-            <span>Nome do café</span>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
-            <BuyDashboardContainer>
-              <Price>
-                <p>R$</p>
-                <span>0,00</span>
-              </Price>
-              <div>
-                <CounterButton>
-                  <button>
-                    <Minus size={14} weight="bold" color="#8047F8" />
-                  </button>
-                  <span>0</span>
-                  <button>
-                    <Plus size={14} weight="bold" color="#8047F8" />
-                  </button>
-                </CounterButton>
-                <button>
-                  <ShoppingCartSimple size={16} weight="fill" color="#ffffff" />
-                </button>
-              </div>
-            </BuyDashboardContainer>
-          </CoffeeListItem>
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
+          <ListItem />
         </CoffeeListItemsContainer>
       </CoffeeListContainer>
     </HomeContainer>
