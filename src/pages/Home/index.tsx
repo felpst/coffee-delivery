@@ -13,14 +13,9 @@ import {
   Item,
 } from './styles'
 
-import {
-  Coffee,
-  Package,
-  ShoppingCart,
-  Timer,
-} from 'phosphor-react'
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 
-import { ListItem } from '../../components/ListItem'
+import { ListItem } from './components/ListItem'
 
 export function Home() {
   return (

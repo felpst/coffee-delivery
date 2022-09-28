@@ -73,3 +73,8 @@ export const Badge = styled.span`
 export const Cart = styled.div`
   position: relative;
 `
+
+export const HeaderSpace = styled.div`
+  height: 102px;
+  background: none;
+`

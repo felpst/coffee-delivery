@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { DefaultLayout } from './layouts/DafaultLayout'
+import { DefaultLayout } from './layouts/DefaultLayout'
 import { Checkout } from './pages/Checkout'
 import { CheckoutFilled } from './pages/CheckoutFilled'
 import { Home } from './pages/Home'
