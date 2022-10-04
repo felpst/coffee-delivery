@@ -1,4 +1,4 @@
-import coffee from '../../assets/coffee.svg'
+import coffee from '../../../../assets/coffee.svg'
 
 import {
   BuyDashboardContainer,
