@@ -118,5 +118,3 @@ export const CoffeeListItemsContainer = styled.div`
 
   padding-bottom: 9.8125rem;
 `
-
-
