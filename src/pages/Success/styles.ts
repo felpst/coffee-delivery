@@ -33,3 +33,45 @@ export const Title = styled.div`
     margin-bottom: 2.5rem;
   }
 `
+
+export const OrderInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px 36px;
+  border-color: ${(props) => props.theme.purple};
+`
+
+export const OrderInfoItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+`
+
+const CIRCLE_COLORS = {
+  yellow: 'yellow',
+  dark_yellow: 'yellow-dark',
+  purple: 'purple',
+} as const
+
+interface CircleProps {
+  circleColor: keyof typeof CIRCLE_COLORS
+}
+
+export const Circle = styled.div<CircleProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background: ${(props) => props.theme[CIRCLE_COLORS[props.circleColor]]};
+`

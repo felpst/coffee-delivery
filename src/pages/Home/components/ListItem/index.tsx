@@ -9,8 +9,21 @@ import {
 } from './styles'
 
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { useState } from 'react'
 
 export function ListItem() {
+  const [counter, setCounter] = useState(0)
+
+  function handleIncrement() {
+    setCounter((props) => props + 1)
+  }
+
+  function handleDecrement() {
+    if (counter > 0) {
+      setCounter((props) => props - 1)
+    }
+  }
+
   return (
     <CoffeeListItem>
       <img src={coffee} alt="" />
@@ -24,11 +37,11 @@ export function ListItem() {
         </Price>
         <div>
           <CounterButton>
-            <button>
+            <button onClick={handleDecrement}>
               <Minus size={14} weight="bold" color="#8047F8" />
             </button>
-            <span>0</span>
-            <button>
+            <span>{counter}</span>
+            <button onClick={handleIncrement}>
               <Plus size={14} weight="bold" color="#8047F8" />
             </button>
           </CounterButton>
