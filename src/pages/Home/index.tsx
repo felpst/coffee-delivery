@@ -16,6 +16,7 @@ import {
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 
 import { ListItem } from './components/ListItem'
+import { coffees } from '../../../public/data/coffee'
 
 export function Home() {
   return (
@@ -59,17 +60,9 @@ export function Home() {
       <CoffeeListContainer>
         <h1>Nossos cafés</h1>
         <CoffeeListItemsContainer>
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
+          {coffees.map((coffee) => (
+            <ListItem key={coffee.id} {...coffee} />
+          ))}
         </CoffeeListItemsContainer>
       </CoffeeListContainer>
     </HomeContainer>

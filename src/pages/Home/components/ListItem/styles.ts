@@ -13,7 +13,8 @@ export const CoffeeListItem = styled.div`
   border-radius: 6px 36px 6px 36px;
 
   img {
-    margin-top: calc(0px - 1.5rem);
+    margin-top: calc(0px - 2.5rem);
+    width: 100px;
   }
 
   span {
@@ -136,4 +137,12 @@ export const CounterButton = styled.div`
     height: 0.875rem;
     padding: 0.35rem;
   }
+`
+
+export const TagsList = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 `

@@ -1,3 +1,5 @@
+import { useContext, useState } from 'react'
+import { CartContext } from '../../../../contexts/useCart'
 import { SelectedCoffee } from './components/SelectedCoffee'
 import {
   CoffeeCard,
@@ -9,17 +11,32 @@ import {
 } from './styles'
 
 export function Selection() {
+  const { cartItems, calculateTotal } = useContext(CartContext)
+
+  function updatePrice() {
+    return calculateTotal().toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })
+  }
+
+  const [total, setTotal] = useState(updatePrice())
+
+  function handleTotal() {
+    setTotal(updatePrice())
+  }
+
   return (
     <Container>
       <h1>Cafés selecionados</h1>
       <CoffeeCard>
-        <SelectedCoffee />
-        <SelectedCoffee />
-        <SelectedCoffee />
+        {cartItems.map((item) => (
+          <SelectedCoffee key={item.id} {...item} />
+        ))}
         <SelectedInfo>
           <SelectInfoText>
             <p>Total de itens</p>
-            <p>R$ 29,70</p>
+            <p>{total}</p>
           </SelectInfoText>
           <SelectInfoText>
             <p>Entrega</p>

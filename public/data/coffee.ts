@@ -1,8 +1,3 @@
-import americano from './assets/Type=Americano.svg'
-import tradicional from './assets/Type=Expresso.svg'
-import cremoso from './assets/Type=ExpressoCremoso.svg'
-import gelado from './assets/Type=CafeGelado.svg'
-
 export const coffees = [
   {
     id: 1,
@@ -10,7 +5,7 @@ export const coffees = [
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
     price: 9.9,
-    image: { americano },
+    image: '/data/assets/Type=Americano.svg',
   },
   {
     id: 2,
@@ -18,7 +13,7 @@ export const coffees = [
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
     price: 9.9,
-    image: { tradicional },
+    image: '/data/assets/Type=Americano.svg',
   },
   {
     id: 3,
@@ -26,7 +21,7 @@ export const coffees = [
     name: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
     price: 9.9,
-    image: { cremoso },
+    image: '/data/assets/Type=Americano.svg',
   },
   {
     id: 4,
@@ -34,6 +29,6 @@ export const coffees = [
     name: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
     price: 9.9,
-    image: { gelado },
+    image: '/data/assets/Type=Americano.svg',
   },
 ]

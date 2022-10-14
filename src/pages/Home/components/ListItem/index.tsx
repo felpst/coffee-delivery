@@ -1,17 +1,34 @@
-import coffee from '../../../../assets/coffee.svg'
-
 import {
   BuyDashboardContainer,
   CoffeeListItem,
   CounterButton,
   Price,
   Tag,
+  TagsList,
 } from './styles'
 
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../../../contexts/useCart'
 
-export function ListItem() {
+type ListItemProps = {
+  id: number
+  name: string
+  description: string
+  price: number
+  tags: string[]
+  image: string
+}
+
+export function ListItem({
+  id,
+  description,
+  image,
+  name,
+  price,
+  tags,
+}: ListItemProps) {
+  const { addItemToCart } = useContext(CartContext)
   const [counter, setCounter] = useState(0)
 
   function handleIncrement() {
@@ -24,16 +41,28 @@ export function ListItem() {
     }
   }
 
+  function handleAddItem() {
+    if (counter > 0) {
+      addItemToCart({ id, price, quantity: counter, image, name })
+    }
+  }
+
   return (
     <CoffeeListItem>
-      <img src={coffee} alt="" />
-      <Tag>Tradicional</Tag>
-      <span>Nome do café</span>
-      <p>O tradicional café feito com água quente e grãos moídos</p>
+      <img src={image} alt="" />
+
+      <TagsList>
+        {tags.map((tag, index) => (
+          <Tag key={index}>{tag}</Tag>
+        ))}
+      </TagsList>
+
+      <span>{name}</span>
+      <p>{description}</p>
       <BuyDashboardContainer>
         <Price>
           <p>R$</p>
-          <span>0,00</span>
+          <span>{price}0</span>
         </Price>
         <div>
           <CounterButton>
@@ -45,7 +74,7 @@ export function ListItem() {
               <Plus size={14} weight="bold" color="#8047F8" />
             </button>
           </CounterButton>
-          <button>
+          <button onClick={handleAddItem}>
             <ShoppingCartSimple size={16} weight="fill" color="#ffffff" />
           </button>
         </div>
