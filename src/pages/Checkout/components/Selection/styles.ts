@@ -55,13 +55,14 @@ export const SelectInfoTotal = styled.div`
   color: ${(props) => props.theme['base-subtitle']};
 `
 
-export const ConfirmButton = styled.button`
+export const ConfirmButton = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
 
   padding: 0.75rem 0;
   width: 23rem;
+  text-decoration: none;
 
   border-radius: 6px;
   border: none;

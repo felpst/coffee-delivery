@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { FieldValues, UseFormHandleSubmit } from 'react-hook-form'
 import { CartContext } from '../../../../contexts/useCart'
 import { SelectedCoffee } from './components/SelectedCoffee'
 import {
@@ -10,20 +11,23 @@ import {
   SelectInfoTotal,
 } from './styles'
 
-export function Selection() {
-  const { cartItems, calculateTotal } = useContext(CartContext)
+type SelectionProps = {
+  handleSubmit: UseFormHandleSubmit<FieldValues>
+}
 
-  function updatePrice() {
-    return calculateTotal().toLocaleString('pt-br', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  }
+export function Selection({ handleSubmit }: SelectionProps) {
+  const { cartItems } = useContext(CartContext)
 
-  const [total, setTotal] = useState(updatePrice())
+  const [total, setTotal] = useState(0)
 
-  function handleTotal() {
-    setTotal(updatePrice())
+  useEffect(() => {
+    setTotal(
+      cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0),
+    )
+  }, [cartItems])
+
+  function handleFormSubmit(data: any) {
+    console.log(data)
   }
 
   return (
@@ -36,18 +40,35 @@ export function Selection() {
         <SelectedInfo>
           <SelectInfoText>
             <p>Total de itens</p>
-            <p>{total}</p>
+            <p>
+              {Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(total)}
+            </p>
           </SelectInfoText>
           <SelectInfoText>
             <p>Entrega</p>
-            <p>R$ 3,50</p>
+            <p>
+              {Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(total * 0.1)}
+            </p>
           </SelectInfoText>
           <SelectInfoTotal>
             <p>Total</p>
-            <p>R$ 33,20</p>
+            <p>
+              {Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              }).format(total + total * 0.1)}
+            </p>
           </SelectInfoTotal>
         </SelectedInfo>
-        <ConfirmButton>CONFIRMAR PEDIDO</ConfirmButton>
+        <ConfirmButton href="/success" onClick={handleSubmit(handleFormSubmit)}>
+          CONFIRMAR PEDIDO
+        </ConfirmButton>
       </CoffeeCard>
     </Container>
   )

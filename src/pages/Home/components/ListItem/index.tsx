@@ -44,6 +44,7 @@ export function ListItem({
   function handleAddItem() {
     if (counter > 0) {
       addItemToCart({ id, price, quantity: counter, image, name })
+      setCounter(0)
     }
   }
 

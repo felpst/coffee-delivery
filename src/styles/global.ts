@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
     :focus {
         outline: none;
-        box-shadow: 0px 0px 0px 2px ${(props) => props.theme['yellow-dark']};
+        box-shadow: 0px 0px 0px 0px ${(props) => props.theme['yellow-dark']};
     }
 
     body {

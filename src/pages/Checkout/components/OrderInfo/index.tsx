@@ -5,6 +5,8 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
+
 import {
   AddressInput,
   CEPInput,
@@ -18,7 +20,11 @@ import {
   UFInput,
 } from './styles'
 
-export function OrderInfo() {
+type OrderInfoProps = {
+  register: UseFormRegister<FieldValues>
+}
+
+export function OrderInfo({ register }: OrderInfoProps) {
   return (
     <OrderInfoContainer>
       <h1>Complete seu pedido</h1>
@@ -31,16 +37,28 @@ export function OrderInfo() {
           </div>
         </FormTitle>
         <form action="">
-          <CEPInput placeholder="CEP"></CEPInput>
-          <AddressInput placeholder="Rua"></AddressInput>
+          <CEPInput placeholder="CEP" {...register('cep')}></CEPInput>
+          <AddressInput placeholder="Rua" {...register('rua')}></AddressInput>
           <ConnectContainer>
-            <NumberInput placeholder="Número"></NumberInput>
-            <AddressInput placeholder="Complemento"></AddressInput>
+            <NumberInput
+              placeholder="Número"
+              {...register('numero')}
+            ></NumberInput>
+            <AddressInput
+              placeholder="Complemento"
+              {...register('complemento')}
+            ></AddressInput>
           </ConnectContainer>
           <ConnectContainer>
-            <NumberInput placeholder="Bairro"></NumberInput>
-            <AddressInput placeholder="Cidade"></AddressInput>
-            <UFInput placeholder="UF"></UFInput>
+            <NumberInput
+              placeholder="Bairro"
+              {...register('bairro')}
+            ></NumberInput>
+            <AddressInput
+              placeholder="Cidade"
+              {...register('cidade')}
+            ></AddressInput>
+            <UFInput placeholder="UF" {...register('uf')}></UFInput>
           </ConnectContainer>
         </form>
       </FormContainer>
