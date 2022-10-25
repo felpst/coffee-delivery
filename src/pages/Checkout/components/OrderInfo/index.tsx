@@ -5,7 +5,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
 import {
   AddressInput,
@@ -20,11 +20,9 @@ import {
   UFInput,
 } from './styles'
 
-type OrderInfoProps = {
-  register: UseFormRegister<FieldValues>
-}
+export function OrderInfo() {
+  const { register } = useFormContext()
 
-export function OrderInfo({ register }: OrderInfoProps) {
   return (
     <OrderInfoContainer>
       <h1>Complete seu pedido</h1>
@@ -36,31 +34,29 @@ export function OrderInfo({ register }: OrderInfoProps) {
             <p>Informe o endereço onde deseja receber seu pedido</p>
           </div>
         </FormTitle>
-        <form action="">
-          <CEPInput placeholder="CEP" {...register('cep')}></CEPInput>
-          <AddressInput placeholder="Rua" {...register('rua')}></AddressInput>
-          <ConnectContainer>
-            <NumberInput
-              placeholder="Número"
-              {...register('numero')}
-            ></NumberInput>
-            <AddressInput
-              placeholder="Complemento"
-              {...register('complemento')}
-            ></AddressInput>
-          </ConnectContainer>
-          <ConnectContainer>
-            <NumberInput
-              placeholder="Bairro"
-              {...register('bairro')}
-            ></NumberInput>
-            <AddressInput
-              placeholder="Cidade"
-              {...register('cidade')}
-            ></AddressInput>
-            <UFInput placeholder="UF" {...register('uf')}></UFInput>
-          </ConnectContainer>
-        </form>
+        <CEPInput placeholder="CEP" {...register('cep')}></CEPInput>
+        <AddressInput placeholder="Rua" {...register('rua')}></AddressInput>
+        <ConnectContainer>
+          <NumberInput
+            placeholder="Número"
+            {...register('numero')}
+          ></NumberInput>
+          <AddressInput
+            placeholder="Complemento"
+            {...register('complemento')}
+          ></AddressInput>
+        </ConnectContainer>
+        <ConnectContainer>
+          <NumberInput
+            placeholder="Bairro"
+            {...register('bairro')}
+          ></NumberInput>
+          <AddressInput
+            placeholder="Cidade"
+            {...register('cidade')}
+          ></AddressInput>
+          <UFInput placeholder="UF" {...register('uf')}></UFInput>
+        </ConnectContainer>
       </FormContainer>
       <FormContainer>
         <FormTitle>

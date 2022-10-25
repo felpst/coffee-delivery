@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { CounterButton } from '../../../../../Home/components/ListItem/styles'
+import { CounterButton } from '../../../Home/components/ListItem/styles'
 import {
   ButtonsContainer,
   CoffeeItem,
@@ -11,7 +11,7 @@ import {
   SelectionContainer,
   SelectionItem,
 } from './styles'
-import { CartContext, ItemProps } from '../../../../../../contexts/useCart'
+import { CartContext, ItemProps } from '../../../../contexts/useCart'
 import { useContext, useState } from 'react'
 
 export function SelectedCoffee({
