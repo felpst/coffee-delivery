@@ -15,12 +15,19 @@ import {
   FormTitle,
   NumberInput,
   OrderInfoContainer,
-  PaymentOption,
   PaymentOptionsContainer,
   UFInput,
 } from './styles'
 
-export function OrderInfo() {
+interface OrderInfoProps {
+  handleSetPaymentOption(option: string): void
+  paymentOption: string
+}
+
+export function OrderInfo({
+  handleSetPaymentOption,
+  paymentOption,
+}: OrderInfoProps) {
   const { register } = useFormContext()
 
   return (
@@ -34,11 +41,21 @@ export function OrderInfo() {
             <p>Informe o endereço onde deseja receber seu pedido</p>
           </div>
         </FormTitle>
-        <CEPInput placeholder="CEP" {...register('cep')}></CEPInput>
-        <AddressInput placeholder="Rua" {...register('rua')}></AddressInput>
+        <CEPInput
+          placeholder="CEP"
+          min={8}
+          max={8}
+          {...register('cep')}
+        ></CEPInput>
+        <AddressInput
+          placeholder="Rua"
+          min={1}
+          {...register('rua')}
+        ></AddressInput>
         <ConnectContainer>
           <NumberInput
             placeholder="Número"
+            min={1}
             {...register('numero')}
           ></NumberInput>
           <AddressInput
@@ -49,13 +66,20 @@ export function OrderInfo() {
         <ConnectContainer>
           <NumberInput
             placeholder="Bairro"
+            min={1}
             {...register('bairro')}
           ></NumberInput>
           <AddressInput
             placeholder="Cidade"
+            min={1}
             {...register('cidade')}
           ></AddressInput>
-          <UFInput placeholder="UF" {...register('uf')}></UFInput>
+          <UFInput
+            placeholder="UF"
+            min={2}
+            max={2}
+            {...register('uf')}
+          ></UFInput>
         </ConnectContainer>
       </FormContainer>
       <FormContainer>
@@ -69,18 +93,30 @@ export function OrderInfo() {
           </div>
         </FormTitle>
         <PaymentOptionsContainer>
-          <PaymentOption>
+          <button
+            type="button"
+            disabled={paymentOption === 'Cartão de Crédito'}
+            onClick={() => handleSetPaymentOption('Cartão de Crédito')}
+          >
             <CreditCard size={16} color="#8047F8" />
             <p>CARTÃO DE CRÉDITO</p>
-          </PaymentOption>
-          <PaymentOption>
+          </button>
+          <button
+            type="button"
+            disabled={paymentOption === 'Cartão de Débito'}
+            onClick={() => handleSetPaymentOption('Cartão de Débito')}
+          >
             <Bank size={16} color="#8047F8" />
             <p>CARTÃO DE DÉBITO</p>
-          </PaymentOption>
-          <PaymentOption>
+          </button>
+          <button
+            type="button"
+            disabled={paymentOption === 'Dinheiro'}
+            onClick={() => handleSetPaymentOption('Dinheiro')}
+          >
             <Money size={16} color="#8047F8" />
             <p>DINHEIRO</p>
-          </PaymentOption>
+          </button>
         </PaymentOptionsContainer>
       </FormContainer>
     </OrderInfoContainer>

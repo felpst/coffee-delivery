@@ -17,18 +17,25 @@ import * as z from 'zod'
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../contexts/useCart'
 import { SelectedCoffee } from './components/SelectedCoffee'
+import { OrderContext } from '../../contexts/useOrder'
 
 const newFormValidationSchema = z.object({
-  cep: z.string().min(8).max(8),
-  rua: z.string().min(1),
-  numero: z.string().min(1),
+  cep: z
+    .string()
+    .min(8, 'Precisa ter ao mínimo 8 caracteres')
+    .max(8, 'Precisa ter ao máximo 8 caracteres'),
+  rua: z.string().min(1, 'Precisa ter ao mínimo 1 caractere'),
+  numero: z.string().min(1, 'Precisa ter ao mínimo 1 caractere'),
   complemento: z.string(),
-  bairro: z.string().min(1),
-  cidade: z.string().min(1),
-  uf: z.string().min(2).max(2),
+  bairro: z.string().min(1, 'Precisa ter ao mínimo 1 caractere'),
+  cidade: z.string().min(1, 'Precisa ter ao mínimo 1 caractere'),
+  uf: z
+    .string()
+    .min(2, 'Precisa ter ao mínimo 2 caracteres')
+    .max(2, 'Precisa ter ao máximo 2 caracteres'),
 })
 
-type NewFormData = z.infer<typeof newFormValidationSchema>
+export type NewFormData = z.infer<typeof newFormValidationSchema>
 
 export function Checkout() {
   const navigate = useNavigate()
@@ -41,7 +48,15 @@ export function Checkout() {
 
   const { cartItems } = useContext(CartContext)
 
+  const { setOrderInfo } = useContext(OrderContext)
+
   const [total, setTotal] = useState(0)
+
+  const [paymentOption, setPaymentOption] = useState('')
+
+  function handleSetPaymentOption(option: string) {
+    setPaymentOption(option)
+  }
 
   useEffect(() => {
     setTotal(
@@ -50,8 +65,14 @@ export function Checkout() {
   }, [cartItems])
 
   function handleFormSubmit(data: NewFormData) {
-    console.log(data)
-    navigate('/success')
+    if (paymentOption === '') {
+      alert('Selecione uma forma de pagamento')
+    } else if (total === 0) {
+      alert('Selecione ao menos um item')
+    } else {
+      setOrderInfo({ data, paymentOption })
+      navigate('/success')
+    }
   }
 
   return (
@@ -61,7 +82,10 @@ export function Checkout() {
         action="/success"
       >
         <FormProvider {...newForm}>
-          <OrderInfo />
+          <OrderInfo
+            handleSetPaymentOption={handleSetPaymentOption}
+            paymentOption={paymentOption}
+          />
         </FormProvider>
         <SelectionContainer>
           <h1>Cafés selecionados</h1>

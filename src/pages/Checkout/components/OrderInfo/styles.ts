@@ -94,30 +94,30 @@ export const PaymentOptionsContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 0.75rem;
-`
 
-export const PaymentOption = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  width: 100%;
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
 
-  border: 1px solid transparent;
+    border: 1px solid transparent;
 
-  padding: 1rem;
-  border-radius: 6px;
-  background: ${(props) => props.theme['base-button']};
+    padding: 1rem;
+    border-radius: 6px;
+    background: ${(props) => props.theme['base-button']};
 
-  font-family: 'Roboto';
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 160%;
-  color: ${(props) => props.theme['base-text']};
+    font-family: 'Roboto';
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 160%;
+    color: ${(props) => props.theme['base-text']};
 
-  &.active {
-    background: ${(props) => props.theme['purple-light']};
-    border: 1px solid ${(props) => props.theme.purple};
+    &:disabled {
+      background: ${(props) => props.theme['purple-light']};
+      border: 1px solid ${(props) => props.theme.purple};
+    }
   }
 `

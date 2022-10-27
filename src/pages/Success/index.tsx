@@ -1,5 +1,7 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext } from 'react'
 import illustration from '../../assets/illustration.svg'
+import { OrderContext } from '../../contexts/useOrder'
 import {
   Circle,
   Container,
@@ -9,6 +11,10 @@ import {
 } from './styles'
 
 export function Success() {
+  const { getOrderInfo } = useContext(OrderContext)
+
+  const { data, paymentOption } = getOrderInfo() || {}
+
   return (
     <Container>
       <div>
@@ -23,9 +29,14 @@ export function Success() {
             </Circle>
             <div>
               <p>
-                Entrega em <b>Rua João Daniel Martinelli, 102</b>
+                Entrega em{' '}
+                <b>
+                  {data?.rua}, {data?.numero}
+                </b>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {data?.bairro} - {data?.cidade}, {data?.uf}
+              </p>
             </div>
           </OrderInfoItem>
           <OrderInfoItem>
@@ -46,7 +57,7 @@ export function Success() {
             <div>
               <p>Pagamento na entraga</p>
               <p>
-                <b>Cartão de Crédito</b>
+                <b>{paymentOption}</b>
               </p>
             </div>
           </OrderInfoItem>
